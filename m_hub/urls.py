@@ -23,4 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('depts/', include('debt_manager.urls')),
     path('', include('dashboard.urls'))
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

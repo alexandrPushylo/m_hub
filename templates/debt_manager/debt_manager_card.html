@@ -1,0 +1,38 @@
+<div id="debt_manger_card" class="application_items card">
+    <div class="card-header" style="text-align: center">
+        <span>Долги</span>
+    </div>
+    <div class="card-body p-1">
+        {% for debt in debt_list %}
+            <div class="my-1 p-1"
+                    {% if debt.date_end > TODAY %}
+                        style="border: solid #868383 1px; border-radius: 5px">
+                    {% elif debt.date_end == TODAY %}
+                        style="border: solid yellow 2px; border-radius: 5px">
+                    {% else %}
+                        style="border: solid red 2px; border-radius: 5px">
+                    {% endif %}
+            
+                <p style="font-size: 12pt" class="m-0">
+                    <span>{{ debt.debtors.last_name }}</span>
+                    <span>{{ debt.debtors.first_name }}</span>
+                </p>                
+                
+                <p style="font-size: 10pt" class="m-0">
+                    <span style="text-decoration-line: underline; font-size: 12pt;">{{ debt.amount }}</span>
+                    <span style="font-weight: bolder">{{ debt.currency }}</span>
+                    <span style="float: right">{{ debt.date_end }}</span>
+                </p>
+            
+            </div>   
+        {% endfor %}
+    </div>
+
+    <div class="card-footer p-1">
+        <div class="navbar">
+            <a href="#" class="btn btn-info">Подробнее</a>
+            <a href="#" class="btn btn-primary">Добавить</a>
+            <a href="#" class="btn btn-primary">3</a>
+        </div>
+    </div>
+</div>
