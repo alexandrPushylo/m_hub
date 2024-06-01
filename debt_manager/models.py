@@ -25,11 +25,11 @@ class Debt(models.Model):
     currency = models.CharField(max_length=200, verbose_name='Валюта', choices=CURRENCY_CHOICES)
     date_start = models.DateTimeField(verbose_name='Дата создания', blank=True, null=True)
     date_end = models.DateField(verbose_name='Конечная дата', blank=True, null=True)
-    debtors = models.ForeignKey(Debtor, on_delete=models.CASCADE, verbose_name='Должник')
+    debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE, verbose_name='Должник')
     is_closed = models.BooleanField(default=False, verbose_name='Закрыто')
 
     def __str__(self):
-        return f"{self.debtors} - {self.amount} {self.currency} - {'Открыто' if self.is_closed else 'Закрыто'}"
+        return f"{self.debtor} - {self.amount} {self.currency} - {'Закрыто' if self.is_closed else 'Открыто'}"
 
     class Meta:
         verbose_name = 'Долг'

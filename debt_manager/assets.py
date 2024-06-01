@@ -1,6 +1,6 @@
 CURRENCY_CHOICES = {
-    'EUR': 'EUR',
-    'USD': 'USD',
     'BYN': 'BYN',
+    'USD': 'USD',
+    'EUR': 'EUR',
     'RUB': 'RUB',
 }
