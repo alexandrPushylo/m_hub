@@ -19,3 +19,17 @@ $('#applications_container').masonry({
     }
 // опции анимации - очередь и продолжительность анимации
 });
+
+function closeDebt(e, debtId){
+    $.ajax({
+        type: 'POST',
+        mode: 'same-origin',
+        url: window.location,
+        data: {
+            csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+            debt_id: debtId
+        }
+    }).done((d) => {
+        window.location.reload()
+    })
+}

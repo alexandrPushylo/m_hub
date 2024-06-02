@@ -8,7 +8,7 @@ from debt_manager import utilites as U
 def dashboard(request):
     out = {}
     out = U.prepare_content_data(out)
-    debt_list = Debt.objects.filter(is_closed=False)
+    debt_list = Debt.objects.filter(is_closed=False, is_hidden=False)
     debtors = Debtor.objects.filter(debt__is_closed=False).distinct().order_by('last_name')
     debtor_list = debtors.values()
     for debtor in debtor_list:

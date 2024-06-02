@@ -23,10 +23,12 @@ class Debt(models.Model):
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
     amount = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Сумма', blank=True, null=True)
     currency = models.CharField(max_length=200, verbose_name='Валюта', choices=CURRENCY_CHOICES)
-    date_start = models.DateTimeField(verbose_name='Дата создания', blank=True, null=True)
+    date_start_time = models.TimeField(verbose_name='Время создания', blank=True, null=True)
+    date_start_date = models.DateField(verbose_name='Дата создания', blank=True, null=True)
     date_end = models.DateField(verbose_name='Конечная дата', blank=True, null=True)
     debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE, verbose_name='Должник')
     is_closed = models.BooleanField(default=False, verbose_name='Закрыто')
+    is_hidden = models.BooleanField(default=False, verbose_name='Скрыто')
 
     def __str__(self):
         return f"{self.debtor} - {self.amount} {self.currency} - {'Закрыто' if self.is_closed else 'Открыто'}"

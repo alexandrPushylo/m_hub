@@ -4,3 +4,4 @@ CURRENCY_CHOICES = {
     'EUR': 'EUR',
     'RUB': 'RUB',
 }
+
