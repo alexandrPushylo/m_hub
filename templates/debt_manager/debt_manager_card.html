@@ -1,0 +1,36 @@
+<div id="debt_manger_card" class="application_items card">
+    <div class="card-header" style="text-align: center">
+        <span>Долги</span>
+    </div>
+    <div class="card-body p-1">
+        {% for debtor in debtor_list %}
+            <div class="my-1 p-1"
+                 onclick="location.href = '/debts/personal_debt/?debtor_id={{ debtor.id }}'"
+                 style="border: solid #868383 1px; border-radius: 5px">
+
+            <p style="font-size: 12pt" class="m-0">
+                <span>{{ debtor.last_name }}</span>
+                <span>{{ debtor.first_name }}</span>
+            </p>
+            {% for debt in debtor.debts %}
+                <p style="font-size: 10pt; {% if debt.date_end < TODAY %} color: red {% endif %}" 
+                   class="m-0">
+                    <a href="{% url 'edit_debt' %}?debt_id={{ debt.id }}">
+                        <span style="font-size: 12pt; color: black; {% if debt.date_end < TODAY %} color: red; {% endif %}">{{ debt.amount }}</span>
+                    </a>
+                    <span style="font-weight: bolder">{{ debt.currency }}</span>
+                    <span style="float: right">{% if debt.date_end %}{{ debt.date_end }}{% endif %}</span>
+                </p>
+            {% endfor %}
+
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="card-footer p-1">
+        <div class="navbar">
+            <a href="#" class="btn btn-info">Подробнее</a>
+            <a href="{% url 'edit_debt' %}" class="btn btn-success">Добавить</a>
+        </div>
+    </div>
+</div>

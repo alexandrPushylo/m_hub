@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block body %}
+    <div class="container">
+        <p style="text-align: center">
+            <span style="font-size: 16pt;">{{ TODAY }}</span>
+        </p>
+
+        <div id="applications_container" class="position-relative translate-middle-x start-50">
+            {% include 'debt_manager/debt_manager_card.html' %}
+        </div>
+
+    </div>
+{% endblock %}

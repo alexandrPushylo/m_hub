@@ -1,0 +1,82 @@
+{% extends 'index.html' %}
+{% block body %}
+    <div class="container">
+        <div><h3><u>{{ title }}</u></h3></div>
+        <form method="post" id="edit_debt_form">{% csrf_token %}
+            <div class="m-2 me-2">
+                <label>Фамилия
+                    <input class="form-control" name="last_name" type="text" value="{{ debtor.last_name }}" required/>
+                </label>
+
+                <label class="">Имя
+                    <input class="form-control" name="first_name" type="text" value="{{ debtor.first_name }}" required/>
+                </label>
+            </div>
+        
+            <div class="m-2">
+                <label class="">Название
+                    <input class="form-control" name="title" type="text" 
+                           value="{% if debt.title %}{{ debt.title }}{% endif %}"/>
+                </label>
+                <label class="w-100">Описание
+                    <textarea class="form-control" name="description">{{ debt.description }}</textarea>
+                </label>
+                
+            </div>
+        
+            <div class="m-2">
+                <label class="">Сумма
+                    <input class="form-control" name="amount" type="number" step="0.01" min="0" value="{{ debt.amount }}"/>
+                </label>
+
+                <label class="ms-2">Валюта
+                    <select name="currency" class="form-control">
+                    
+                        {% for currency in currency_list.items %}
+                                {% if debt.currency == currency.1 %}
+                                    <option selected value="{{ currency.0 }}">{{ currency.1 }}</option>
+                                {% else %}
+                                    <option value="{{ currency.0 }}">{{ currency.1 }}</option>
+                                {% endif %}
+                            
+                        {% endfor %}
+                    
+                    </select>
+                </label>
+            </div>
+        
+            <div class="m-2">
+                <label>Дата создания
+                    <input class="form-control" name="date_start_date" type="date" 
+                           value="{% if debt %}{{ debt.date_start_date.isoformat }}{% else %}{{ TODAY.isoformat }}{% endif %}"/>
+                </label>
+                <label class="ms-2">Время создания
+                    <input class="form-control" name="date_start_time" type="time" 
+                           value="{% if debt %}{{ debt.date_start_time }}{% else %}{{ NOW }}{% endif %}"/>
+                </label>
+                
+            </div>
+            <div class="m-2">
+                <label>Конечная дата
+                    <input class="form-control" name="date_end" type="date" 
+                           value="{{ debt.date_end.isoformat }}"/>
+                </label>
+            </div>
+            
+        
+            <div class="m-2 navbar">
+                {% if technic.id %}
+                    <span><a href="#" class="btn btn-sm btn-outline-danger" style="float: left">Удалить</a></span>
+                {% endif %}
+            <span><a href="{% url 'dashboard' %}" style="float: left">Отмена</a></span>
+            <span><button class="btn btn-sm btn-success" style="" type="submit" form="edit_debt_form">Сохранить
+                </button>
+            </span>
+                
+                
+            </div>
+
+
+        </form>
+    </div>
+{% endblock %}
