@@ -4,13 +4,24 @@
         <div><h3><u>{{ title }}</u></h3></div>
         <form method="post" id="edit_debt_form">{% csrf_token %}
             <div class="m-2 me-2">
+                 <label class="">Должник
+                    <select id="debtor_selector" class="form-control"
+                            onchange="setDebtor(this)"
+                    >   <option></option>
+                        {% for debtor in debtor_list %}
+                            <option value="{{ debtor.id }}">{{ debtor.last_name }} {{ debtor.first_name }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            
                 <label>Фамилия
                     <input class="form-control" name="last_name" type="text" value="{{ debtor.last_name }}" required/>
                 </label>
 
                 <label class="">Имя
                     <input class="form-control" name="first_name" type="text" value="{{ debtor.first_name }}" required/>
-                </label>
+                </label>                
+               
             </div>
         
             <div class="m-2">
