@@ -3,21 +3,6 @@ from django.db import models
 # Create your models here.
 
 
-# class Bill(models.Model):
-#     name = models.CharField(max_length=256, verbose_name="Название", choices=BILLS_CHOICES)
-#     description = models.TextField(verbose_name='Описание', blank=True, null=True)
-#     amount = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Сумма', blank=True, null=True)
-#     payment_date = models.DateField(verbose_name='Дата платежа')
-#
-#     def __str__(self):
-#         return f"{self.payment_date} {self.name} - {self.amount}"
-#
-#     class Meta:
-#         verbose_name = "Платеж"
-#         verbose_name_plural = "Платежи"
-#         ordering = ('-payment_date',)
-
-
 class Rent(models.Model):
     title = 'Квартплата'
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
@@ -81,13 +66,13 @@ class HotWater(models.Model):
 class Electricity(models.Model):
     title = 'Электроэнергия'
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
-    indications = models.IntegerField(verbose_name='Показания', max_length=120)
+    indications = models.IntegerField(verbose_name='Показания')
     amount = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Сумма', blank=True, null=True)
     rate = models.DecimalField(max_digits=5, decimal_places=4, verbose_name='Тариф')
     payment_date = models.DateField(verbose_name='Дата платежа')
 
     def __str__(self):
-        return f"{self.payment_date} - {self.indications}"
+        return f"{self.payment_date} - {self.indications} - {self.amount} руб."
 
     class Meta:
         verbose_name = 'Электроэнергия'
