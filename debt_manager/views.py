@@ -14,12 +14,20 @@ def edit_debt_view(request):
     }
     out = U.prepare_content_data(out)
 
+    debtor_list = Debtor.objects.filter()
+    out['debtor_list'] = debtor_list
+
     debt_id = request.GET.get('debt_id')
     if debt_id:
         debt = Debt.objects.get(pk=debt_id)
-        debtor = Debtor.objects.get(pk=debt.debtor.pk)
+        debtor = debtor_list.get(pk=debt.debtor.pk)
         out['debtor'] = debtor
         out['debt'] = debt
+
+    debtor_id = request.GET.get('debtor_id')
+    if debtor_id:
+        debtor = debtor_list.get(pk=debtor_id)
+        out['debtor'] = debtor
 
     if request.method == 'POST':
         last_name = request.POST.get('last_name')

@@ -33,3 +33,8 @@ function closeDebt(e, debtId){
         window.location.reload()
     })
 }
+
+function setDebtor(e){
+    let debtorId = e.value;
+    window.location.href = window.location.pathname + '?debtor_id='+debtorId;
+}
