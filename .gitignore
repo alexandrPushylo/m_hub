@@ -336,3 +336,4 @@ fabric.properties
 *.sqlite3
 .idea
 m_hub/creds.py
+/static
