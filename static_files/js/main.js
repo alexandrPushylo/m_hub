@@ -38,3 +38,18 @@ function setDebtor(e){
     let debtorId = e.value;
     window.location.href = window.location.pathname + '?debtor_id='+debtorId;
 }
+
+function calculationOfDifferenceIndications(){
+    const lastIndications = $('input[name="last_indications"]').val();
+    const currentIndications = $('input[name="current_indications"]').val();
+    const diffIndications = $('input[name="indications_diff"]');
+    let diff = currentIndications - lastIndications;
+    diffIndications.val(diff)
+}
+function calculationAmount() {
+    const rate = $('input[name="rate"]').val();
+    const diffIndications = $('input[name="indications_diff"]').val();
+    const amount = $('input[name="amount"]');
+    let proiz = rate * diffIndications;
+    amount.val(proiz.toFixed(2))
+}

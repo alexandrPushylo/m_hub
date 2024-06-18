@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
-from debt_manager.models import Debt, Debtor, ExchangeRate
-import debt_manager.assets as ASSETS
+from django.http import HttpResponseRedirect
+from debt_manager.models import Debt, Debtor
 import debt_manager.utilites as U
 import debt_manager.endpoints as ENDPOINTS
+import m_hub.assets as ASSETS
 
 
 # Create your views here.

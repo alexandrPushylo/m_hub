@@ -1,5 +1,5 @@
 from django.db import models
-from debt_manager.assets import CURRENCY_CHOICES
+from m_hub.assets import CURRENCY_CHOICES
 
 # Create your models here.
 

@@ -1,11 +1,9 @@
-import debt_manager.assets as ASSETS
-from debt_manager.models import Debt, Debtor, ExchangeRate
-from datetime import date, timedelta, datetime
-import time
-import random
+from debt_manager.models import Debt, Debtor
+from datetime import date, datetime
 
 TODAY = date.today
 NOW = datetime.now().time
+MONTH = datetime.now().month
 
 
 def get_transaction_count(debtor: Debtor) -> int:
