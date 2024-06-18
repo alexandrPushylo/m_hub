@@ -44,4 +44,10 @@ function calculationOfDifferenceIndications(){
     let diff = currentIndications - lastIndications;
     diffIndications.val(diff)
 }
+function calculationAmount() {
+    const rate = $('input[name="rate"]').val();
+    const diffIndications = $('input[name="indications_diff"]').val();
+    const amount = $('input[name="amount"]');
+    let proiz = rate * diffIndications;
+    amount.val(proiz.toFixed(2))
 }
