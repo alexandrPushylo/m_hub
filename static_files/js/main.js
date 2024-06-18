@@ -37,4 +37,11 @@ function closeDebt(e, debtId){
 function setDebtor(e){
     let debtorId = e.value;
     window.location.href = window.location.pathname + '?debtor_id='+debtorId;
+function calculationOfDifferenceIndications(){
+    const lastIndications = $('input[name="last_indications"]').val();
+    const currentIndications = $('input[name="current_indications"]').val();
+    const diffIndications = $('input[name="indications_diff"]');
+    let diff = currentIndications - lastIndications;
+    diffIndications.val(diff)
+}
 }
