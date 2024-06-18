@@ -37,10 +37,12 @@ class ColdWater(models.Model):
     title = 'Холодная вода'
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
     indications = models.IntegerField(verbose_name='Показания')
+    amount = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Сумма', blank=True, null=True)
+    rate = models.DecimalField(max_digits=5, decimal_places=4, verbose_name='Тариф')
     payment_date = models.DateField(verbose_name='Дата платежа')
 
     def __str__(self):
-        return f"{self.payment_date} - {self.indications}"
+        return f"{self.payment_date} - {self.indications} кубов - {self.amount} руб."
 
     class Meta:
         verbose_name = 'Холодная вода'
@@ -52,10 +54,12 @@ class HotWater(models.Model):
     title = 'Горячая вода'
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
     indications = models.IntegerField(verbose_name='Показания')
+    amount = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Сумма', blank=True, null=True)
+    rate = models.DecimalField(max_digits=5, decimal_places=4, verbose_name='Тариф')
     payment_date = models.DateField(verbose_name='Дата платежа')
 
     def __str__(self):
-        return f"{self.payment_date} - {self.indications}"
+        return f"{self.payment_date} - {self.indications} кубов - {self.amount} руб."
 
     class Meta:
         verbose_name = 'Горячая вода'
@@ -72,11 +76,10 @@ class Electricity(models.Model):
     payment_date = models.DateField(verbose_name='Дата платежа')
 
     def __str__(self):
-        return f"{self.payment_date} - {self.indications} - {self.amount} руб."
+        return f"{self.payment_date} - {self.indications} кВт/ч - {self.amount} руб."
 
     class Meta:
         verbose_name = 'Электроэнергия'
         verbose_name_plural = 'Электроэнергия'
         ordering = ('-payment_date',)
-
 
