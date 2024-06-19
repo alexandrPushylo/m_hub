@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% block body %}
+    <div class="container">
+        <div><h3><u>{{ title }}</u></h3></div>
+        <form method="post" id="edit_hot_water_form">{% csrf_token %}
+        
+            <div class="m-2 me-2">
+                <label>Тариф
+                    <input class="form-control" name="rate" type="number" min="0" max="1" step="0.0001" value="{{ rate }}"/>
+                </label>
+                <label class="">Израсходовано кубов
+                    <input class="form-control border border-info" name="indications_diff" type="number" readonly 
+                           value="{{ indications_diff }}"/>
+                </label>      
+            </div>
+            
+            <div class="m-2">
+                <label class="">Последние показания
+                    <input class="form-control" name="last_indications" type="number" readonly 
+                           value="{{ last_indications }}"/>
+                </label>
+                <label class="">Текущие показания
+                    <input class="form-control border border-success" name="current_indications" type="number" min="0" 
+                           onchange="calculationOfDifferenceIndications(); calculationAmount();"
+                           value="{{ current_indications }}"/>
+                </label>
+            </div>
+        
+            <div class="m-2">
+                <label class="">Сумма
+                    <input class="form-control" name="amount" type="number" step="0.01" min="0" value="{{ amount }}"/>
+                </label>
+            </div>
+        
+            <div class="m-2">
+                <label>Дата платежа
+                    <input class="form-control" name="payment_date" type="date" 
+                           value="{{ payment_date.isoformat }}"/>
+                </label>
+            </div>
+        
+            <div class="m-2">
+                <label class="w-100">Описание
+                    <textarea class="form-control" name="description">{{ description }}</textarea>
+                </label>                
+            </div>
+        
+            <div class="m-2 navbar">
+            <span><a href="{% url 'dashboard' %}" style="float: left">Отмена</a></span>
+            <span><button class="btn btn-sm btn-success" style="" type="submit" form="edit_hot_water_form">Сохранить
+                </button>
+            </span>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

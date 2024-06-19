@@ -51,7 +51,8 @@
             </div>
         {% endif %}
         {% if hot_water_list %}
-            <div class="my-1 p-1" style="border: solid #868383 1px; border-radius: 5px">
+            <div class="my-1 p-1" style="border: solid #868383 1px; border-radius: 5px"
+                 onclick="window.location.href='{% url 'edit_hot_water' %}'">
                 {% for hot_water in hot_water_list %}
                     {% ifchanged %}
                         <p style="font-size: 12pt" class="m-0"><span>{{ hot_water.title }}</span></p>
@@ -59,12 +60,17 @@
 
                     <p style="font-size: 10pt;"
                        class="m-0">
-                        <span style="font-size: 12pt; color: black;">{{ hot_water.indications }}</span>
-                        {#                    <span class="ms-2" style="font-weight: bolder">{{ hot_water.amount }} руб.</span>#}
+                        <span style="font-size: 12pt; color: black;">{{ hot_water.indications }} кВт\ч</span>
+                        <span class="ms-2" style="font-weight: bolder">{{ hot_water.amount }} руб.</span>
                         <span style="float: right">{{ hot_water.payment_date }}</span>
                     </p>
 
                 {% endfor %}
+            </div>
+        {% else %}
+            <div class="my-1 p-1" style="border: solid #868383 1px; border-radius: 5px"
+                 onclick="window.location.href='{% url 'edit_hot_water' %}'">
+                <p style="font-size: 12pt" class="m-0"><span>Горячая вода</span></p>
             </div>
         {% endif %}
         {% if rent_list %}
