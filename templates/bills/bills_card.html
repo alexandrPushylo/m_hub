@@ -74,7 +74,8 @@
             </div>
         {% endif %}
         {% if rent_list %}
-            <div class="my-1 p-1" style="border: solid #868383 1px; border-radius: 5px">
+            <div class="my-1 p-1" style="border: solid #868383 1px; border-radius: 5px"
+                 onclick="window.location.href='{% url 'edit_rent' %}'">
                 {% for rent in rent_list %}
                     {% ifchanged %}
                         <p style="font-size: 12pt" class="m-0"><span>{{ rent.title }}</span></p>
@@ -88,6 +89,11 @@
                     </p>
 
                 {% endfor %}
+            </div>
+        {% else %}
+            <div class="my-1 p-1" style="border: solid #868383 1px; border-radius: 5px"
+                 onclick="window.location.href='{% url 'edit_rent' %}'">
+                <p style="font-size: 12pt" class="m-0"><span>Квартплата</span></p>
             </div>
         {% endif %}
 

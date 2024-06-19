@@ -157,4 +157,47 @@ def edit_hot_water(request):
     context['rate'] = str(rate).replace(',', '.')
 
     return render(request, template, context)
+
+
+def edit_rent(request):
+    template = 'bills/edit_rent.html'
+    context = {
+        'title': 'Квартплата'
+    }
+    last_rent = Rent.objects.filter(payment_date__month=U.MONTH - 1)
+    current_rent = Rent.objects.filter(payment_date__month=U.MONTH)
+
+    if request.method == 'POST':
+        diff_amount = request.POST.get('diff_amount')
+        current_amount = request.POST.get('current_amount')
+        payment_date = request.POST.get('payment_date', U.TODAY)
+        description = request.POST.get('description')
+
+        if all([current_amount, payment_date]):
+            electricity, _ = Rent.objects.update_or_create(payment_date__month=U.MONTH, defaults={
+                'amount': current_amount,
+                'payment_date': payment_date,
+                'description': description
+            })
+        return HttpResponseRedirect(ENDPOINTS.DASHBOARD)
+    if last_rent.exists():
+        last_amount = last_rent.first().amount
+
+    else:
+        last_amount = 0
+
+    if current_rent.exists():
+        description = current_rent.first().description
+        current_amount = current_rent.first().amount
+        payment_date = current_rent.first().payment_date
+
+        context['current_amount'] = str(current_amount).replace(',', '.')
+        context['description'] = description
+        context['diff_amount'] = current_amount - last_amount
+    else:
+        payment_date = U.TODAY
+
+    context['payment_date'] = payment_date
+    context['last_amount'] = str(last_amount).replace(',', '.')
+
     return render(request, template, context)
