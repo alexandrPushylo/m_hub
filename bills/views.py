@@ -8,6 +8,7 @@ import bills.endpoints as ENDPOINTS
 
 
 def edit_electricity(request):
+    template = 'bills/edit_electricity.html'
     context = {
         'title': 'Электроэнергия'
     }
@@ -54,7 +55,7 @@ def edit_electricity(request):
     context['last_indications'] = last_indications
     context['rate'] = str(rate).replace(',', '.')
 
-    template = 'bills/edit_electricity.html'
+    return render(request, template, context)
 
 
 def edit_cold_water(request):
