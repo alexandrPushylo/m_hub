@@ -53,3 +53,10 @@ function calculationAmount() {
     let proiz = rate * diffIndications;
     amount.val(proiz.toFixed(2))
 }
+function calculationAmountForRent() {
+    const last_amount = $('input[name="last_amount"]').val();
+    const current_amount = $('input[name="current_amount"]').val();
+    const diff_amount = $('input[name="diff_amount"]');
+    let diff = current_amount - last_amount;
+    diff_amount.val(diff.toFixed(2))
+}
