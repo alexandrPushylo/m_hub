@@ -31,7 +31,11 @@
                     {% endif %}
                     
                     
-                    <tr class="debt_row">
+                    <tr class="debt_row" 
+                        {% if debt.is_closed %}
+                        style="text-decoration-line: line-through; color: rgba(0,0,0,0.37);"
+                        {% endif %}
+                    >
                         <td hidden="hidden"><input type="hidden" name="id" value="{{ debt.id }}"/></td>
 
                         <td>
